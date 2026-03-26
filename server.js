@@ -1,25 +1,23 @@
 // server.js
 const express = require("express");
-const path = require("path");
 const app = express();
+const path = require("path");
 
-// Tu API key segura (si la usas)
-const apiKey = process.env.API_KEY;
-
-// Puerto dinámico para Render
+const apiKey = process.env.API_KEY; // tu key segura en Render
 const PORT = process.env.PORT || 3000;
 
-// Servir archivos estáticos desde la carpeta 'src'
+// Sirve todos los archivos de la carpeta src como estáticos
 app.use(express.static(path.join(__dirname, "src")));
 
-// Ruta raíz (opcional, si quieres mensaje aparte)
+// Ruta principal: index.html de src
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "src", "index.html"));
 });
 
-// Aquí puedes agregar más rutas si tu bot necesita endpoints
-// app.get("/api", (req, res) => { ... })
-
-app.listen(PORT, () => {
-  console.log(`Servidor escuchando en puerto ${PORT} 🚀`);
+// Ruta de prueba del bot o API
+app.get("/api", (req, res) => {
+  res.json({ status: "Bot activo 🚀", apiKeyPresent: !!apiKey });
 });
+
+// Escucha el puerto
+app.listen(PORT, () => console.log(`Servidor escuchando en puerto ${PORT} 🚀`));
