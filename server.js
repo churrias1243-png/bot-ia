@@ -6,13 +6,13 @@ const app = express();
 // Tu API_KEY segura desde Render
 const apiKey = process.env.API_KEY;
 
-// Puerto dinámico
+// Puerto dinámico para Render
 const PORT = process.env.PORT || 3000;
 
 // Servir archivos estáticos desde src/
 app.use(express.static(path.join(__dirname, "src")));
 
-// Ruta principal
+// Ruta principal → muestra index.html
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "src/index.html"));
 });
