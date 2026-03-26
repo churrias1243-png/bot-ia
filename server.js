@@ -1,23 +1,22 @@
-const http = require("http");
+// server.js
+const express = require("express");
+const app = express();
 
-const apiKey = process.env.API_KEY; // tu key segura en Render
+// Puerto dinámico para Render
+const PORT = process.env.PORT || 3000;
 
-const server = http.createServer((req, res) => {
-  if (req.url === "/") {
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end(`
-      <html>
-        <head><title>Proyecto Render</title></head>
-        <body>
-          <h1>Proyecto listo 😎</h1>
-          <p>Servidor corriendo y key segura ✅</p>
-        </body>
-      </html>
-    `);
-  } else {
-    res.writeHead(404, { "Content-Type": "text/plain" });
-    res.end("404 Not Found");
-  }
+// ---------------------------------------------------
+// Ruta principal para que la página deje de mostrar "Not Found"
+app.get("/", (req, res) => {
+  res.send("¡Bot activo y corriendo! 🚀");
 });
 
-server.listen(process.env.PORT || 3000, () => console.log("Servidor corriendo 🚀"));
+// ---------------------------------------------------
+// Aquí va tu lógica del bot
+// Por ejemplo, si usas alguna API o endpoints, agrégalos aquí
+// app.get("/mi-bot", (req, res) => { ... })
+
+// ---------------------------------------------------
+app.listen(PORT, () => {
+  console.log(`Servidor escuchando en puerto ${PORT}`);
+});
