@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 // Servir archivos estáticos desde src/
 app.use(express.static(path.join(__dirname, "src")));
 
-// Ruta principal para confirmar que el bot está corriendo
+// Ruta principal que sirve index.html automáticamente
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "src", "index.html"));
 });
