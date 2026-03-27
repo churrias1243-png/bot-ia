@@ -3,17 +3,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(express.static('public')); // Sirve index.html automáticamente
+app.use(express.static('public'));
 
-// Ruta de API para mensajes
 app.post('/mensaje', async (req, res) => {
   try {
     const userMessage = req.body.text;
-
-    // === Tu función de IA ===
-    // Reemplaza esta línea con tu función real de IA
-    const botReply = await tuFuncionDeIA(userMessage); 
-
+    const botReply = await tuFuncionDeIA(userMessage); // tu función de IA
     res.json({ reply: botReply });
   } catch (error) {
     console.error(error);
@@ -21,5 +16,4 @@ app.post('/mensaje', async (req, res) => {
   }
 });
 
-// Inicia el servidor
 app.listen(PORT, () => console.log(`Servidor corriendo en puerto ${PORT}`));
