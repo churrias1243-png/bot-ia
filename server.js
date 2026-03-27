@@ -3,15 +3,16 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(express.static('public')); // Para servir archivos HTML/JS/CSS
+app.use(express.static('public')); // Sirve index.html automáticamente
 
 // Ruta de API para mensajes
 app.post('/mensaje', async (req, res) => {
   try {
     const userMessage = req.body.text;
 
-    // Llama a tu función de IA
-    const botReply = await tuFuncionDeIA(userMessage); // deja tu lógica igual
+    // === Tu función de IA ===
+    // Reemplaza esta línea con tu función real de IA
+    const botReply = await tuFuncionDeIA(userMessage); 
 
     res.json({ reply: botReply });
   } catch (error) {
