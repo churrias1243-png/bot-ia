@@ -3,18 +3,18 @@ const express = require("express");
 const path = require("path");
 const app = express();
 
-// Tu API_KEY segura en Render
+// Tu API_KEY segura
 const apiKey = process.env.API_KEY;
 
-// Servir archivos estáticos desde la carpeta "src"
+// Servir archivos estáticos de src
 app.use(express.static(path.join(__dirname, "src")));
 
-// Ruta raíz para que muestre index.html
+// Ruta raíz para servir index.html
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "src/index.html"));
 });
 
-// Ejemplo de endpoint de tu bot (opcional)
+// Endpoint de prueba del bot
 app.get("/bot", (req, res) => {
   res.json({ message: "¡Bot activo y corriendo! 🚀" });
 });
