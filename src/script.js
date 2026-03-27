@@ -1,21 +1,51 @@
-function enviar() {
+async function enviar() {
   const input = document.getElementById("input");
   const mensajes = document.getElementById("mensajes");
 
-  if (input.value.trim() === "") return;
+  const texto = input.value;
+  if (!texto) return;
 
-  const mensajeUsuario = document.createElement("div");
-  mensajeUsuario.textContent = "Tú: " + input.value;
-  mensajeUsuario.className = "usuario";
-  mensajes.appendChild(mensajeUsuario);
+  const msgUser = document.createElement("div");
+  msgUser.textContent = "Tú: " + texto;
+  msgUser.className = "usuario";
+  mensajes.appendChild(msgUser);
 
-  const respuesta = document.createElement("div");
-  respuesta.textContent = "Bot: Estoy aprendiendo 😎";
-  respuesta.className = "bot";
+  const res = await fetch("/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ mensaje: texto })
+  });
 
-  setTimeout(() => {
-    mensajes.appendChild(respuesta);
-  }, 500);
+  const data = await res.json();
+
+  const msgBot = document.createElement("div");
+  msgBot.textContent = "Bot: " + data.respuesta;
+  msgBot.className = "bot";
+  mensajes.appendChild(msgBot);
 
   input.value = "";
 }
+
+async function cargarChat() {
+  const mensajes = document.getElementById("mensajes");
+
+  const res = await fetch("/chat");
+  const data = await res.json();
+
+  data.forEach(m => {
+    const u = document.createElement("div");
+    u.textContent = "Tú: " + m.usuario;
+    u.className = "usuario";
+
+    const b = document.createElement("div");
+    b.textContent = "Bot: " + m.bot;
+    b.className = "bot";
+
+    mensajes.appendChild(u);
+    mensajes.appendChild(b);
+  });
+}
+
+window.onload = cargarChat;
