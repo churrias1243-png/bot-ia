@@ -1,11 +1,12 @@
 {
-  "name": "mi-proyecto",
+  "name": "bot-ia",
   "version": "1.0.0",
-  "main": "servidor.js",
+  "description": "Proyecto bot y web para Render",
+  "main": "server.js",
   "scripts": {
-    "start": "node servidor.js"
+    "start": "node server.js"
   },
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^4.18.2"
   }
 }
