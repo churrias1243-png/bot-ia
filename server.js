@@ -1,4 +1,3 @@
-// server.js
 const express = require("express");
 const path = require("path");
 const app = express();
@@ -12,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 // Servir archivos estáticos de la carpeta src
 app.use(express.static(path.join(__dirname, "src")));
 
-// Ruta principal para confirmar que el proyecto está corriendo
+// Ruta principal para confirmar que el bot está corriendo
 app.get("/", (req, res) => {
   res.send(`
     <html>
@@ -21,13 +20,12 @@ app.get("/", (req, res) => {
         <h1>Proyecto listo 😎</h1>
         <p>Servidor corriendo y API_KEY segura ✅</p>
         <p>Tu bot y web están funcionando.</p>
-        <p>Prueba tu bot en <a href="/bot">/bot</a></p>
       </body>
     </html>
   `);
 });
 
-// Ruta de ejemplo para tu bot
+// Endpoint del bot
 app.get("/bot", (req, res) => {
   res.send("¡Bot activo y corriendo! 🚀");
 });
