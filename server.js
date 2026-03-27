@@ -1,3 +1,4 @@
+// server.js
 const express = require("express");
 const path = require("path");
 const app = express();
@@ -8,10 +9,10 @@ const apiKey = process.env.API_KEY;
 // Puerto dinámico para Render o 3000 por defecto
 const PORT = process.env.PORT || 3000;
 
-// Servir archivos estáticos de la carpeta src
+// Servir archivos estáticos desde la carpeta src
 app.use(express.static(path.join(__dirname, "src")));
 
-// Ruta principal para confirmar que el bot está corriendo
+// Ruta principal para comprobar que todo está corriendo
 app.get("/", (req, res) => {
   res.send(`
     <html>
@@ -25,7 +26,7 @@ app.get("/", (req, res) => {
   `);
 });
 
-// Endpoint del bot
+// Ruta de ejemplo para tu bot
 app.get("/bot", (req, res) => {
   res.send("¡Bot activo y corriendo! 🚀");
 });
